@@ -45,10 +45,7 @@ export class User {
 
   @BeforeUpdate()
   async hashPasswordOnUpdate() {
-    // This hook only runs when you use repo.save() on an existing entity
-    // It checks if the password field is being modified *and* if it's not already a hash
     if (this.password && !bcryptHashRegex.test(this.password)) {
-      // If it's a new plain-text password, hash it
       const saltRounds = 10;
       this.password = await bcrypt.hash(this.password, saltRounds);
     }

@@ -5,10 +5,10 @@ import { HttpRequest, HttpResponse } from "./ports/http";
 import { CreateUserUseCase } from "@usecases/create-user/create-user.use-case";
 
 export class CreateUserController {
-  private readonly createUser: CreateUserUseCase;
+  private readonly createUserUseCase: CreateUserUseCase;
 
   constructor(createUser: CreateUserUseCase) {
-    this.createUser = createUser;
+    this.createUserUseCase = createUser;
   }
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -20,7 +20,7 @@ export class CreateUserController {
 
       const userData = { name: httpRequest.body.name, password: httpRequest.body.password };
 
-      const createUserResponse = await this.createUser.create(userData);
+      const createUserResponse = await this.createUserUseCase.create(userData);
 
       return ok(createUserResponse);
     } catch (error) {
