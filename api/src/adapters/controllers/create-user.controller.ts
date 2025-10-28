@@ -1,8 +1,9 @@
 import type { Request, Response } from "express";
-import { badRequest, ok, serverError } from "./helpers/http-helpers";
+import { badRequest, conflict, created, ok, serverError } from "./helpers/http-helpers";
 import { MissingParamError } from "./errors";
 import { HttpRequest, HttpResponse } from "./ports/http";
 import { CreateUserUseCase } from "@usecases/create-user/create-user.use-case";
+import { AlreadyExistsError } from "./errors/already-exists-error";
 
 export class CreateUserController {
   private readonly createUserUseCase: CreateUserUseCase;
@@ -22,8 +23,11 @@ export class CreateUserController {
 
       const createUserResponse = await this.createUserUseCase.create(userData);
 
-      return ok(createUserResponse);
+      return created(createUserResponse);
     } catch (error) {
+      if (error instanceof AlreadyExistsError) {
+        return conflict(error);
+      }
       return serverError(error);
     }
   }

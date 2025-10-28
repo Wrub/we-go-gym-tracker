@@ -7,7 +7,9 @@ import {
   UpdateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
+import { Workout } from "./Workout";
 
 const bcryptHashRegex = /^\$2[aby]\$\d{2}\$.{53}$/;
 
@@ -30,6 +32,9 @@ export class User {
     select: false,
   })
   password: string;
+
+  @OneToMany(() => Workout, (workout) => workout.user)
+  workouts: Workout[];
 
   @CreateDateColumn()
   readonly createdAt: Date;

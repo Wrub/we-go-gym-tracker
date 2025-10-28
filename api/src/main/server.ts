@@ -1,4 +1,4 @@
-import { AppDataSource } from "infrastructure/data-source";
+import { AppDataSource } from "infrastructure/db/data-source";
 import "reflect-metadata";
 
 AppDataSource.initialize()

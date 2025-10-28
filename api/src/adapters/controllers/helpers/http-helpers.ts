@@ -6,8 +6,18 @@ export const badRequest = (error: Error): HttpResponse => ({
   body: error.message,
 });
 
+export const conflict = (error: Error): HttpResponse => ({
+  statusCode: 409,
+  body: error.message,
+});
+
 export const ok = (data: any): HttpResponse => ({
   statusCode: 200,
+  body: data,
+});
+
+export const created = (data: any): HttpResponse => ({
+  statusCode: 201,
   body: data,
 });
 
