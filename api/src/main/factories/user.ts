@@ -1,14 +1,14 @@
 import { CreateUserController } from "@adapters/controllers/create-user.controller";
-import { GetUserController } from "@adapters/controllers/get-user.controller";
+import { FindUserController } from "@adapters/controllers/find-user.controller";
 import { ormUserRepository } from "@repositories/user.repository";
 import { CreateUserUseCase } from "@usecases/create-user/create-user.use-case";
-import { GetUserUseCase } from "@usecases/get-user/get-user.use-case";
+import { FindUserUseCase } from "@usecases/find-user/find-user.use-case";
 
-export const makeGetUserControler = (): GetUserController => {
+export const makeFindUserController = (): FindUserController => {
   const userRepository = ormUserRepository;
-  const getUserUseCase = new GetUserUseCase(userRepository);
-  const getUserController = new GetUserController(getUserUseCase);
-  return getUserController;
+  const findUserUseCase = new FindUserUseCase(userRepository);
+  const findUserController = new FindUserController(findUserUseCase);
+  return findUserController;
 };
 
 export const makeCreateUserController = (): CreateUserController => {

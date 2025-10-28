@@ -1,13 +1,13 @@
-import { GetUserUseCase } from "@usecases/get-user/get-user.use-case";
+import { FindUserUseCase } from "@usecases/find-user/find-user.use-case";
 import { HttpRequest } from "./ports/http";
 import { badRequest, notFoundError, ok, serverError } from "./helpers/http-helpers";
 import { MissingParamError } from "./errors";
 
-export class GetUserController {
-  private readonly getUserUseCase: GetUserUseCase;
+export class FindUserController {
+  private readonly findUserUseCase: FindUserUseCase;
 
-  constructor(getUserUseCase: GetUserUseCase) {
-    this.getUserUseCase = getUserUseCase;
+  constructor(findUserUseCase: FindUserUseCase) {
+    this.findUserUseCase = findUserUseCase;
   }
 
   async handle(httpRequest: HttpRequest) {
@@ -18,13 +18,13 @@ export class GetUserController {
 
       const id = httpRequest.params.id;
 
-      const getUserResponse = await this.getUserUseCase.find(id);
+      const findUserResponse = await this.findUserUseCase.find(id);
 
-      if (!getUserResponse) {
+      if (!findUserResponse) {
         return notFoundError(`User with id: '${id}' was not found.`);
       }
 
-      return ok(getUserResponse);
+      return ok(findUserResponse);
     } catch (error) {
       return serverError(error);
     }

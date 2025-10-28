@@ -1,7 +1,7 @@
 import { User } from "@entities/User";
 import { Repository } from "typeorm";
 
-export class GetUserUseCase {
+export class FindUserUseCase {
   private readonly userRepository: Repository<User>;
 
   constructor(userRepository: Repository<User>) {
