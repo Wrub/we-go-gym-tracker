@@ -10,6 +10,9 @@ export class Workout {
   @Column({ type: "uuid" })
   user_id: string;
 
+  @Column({ type: "varchar", length: 255, nullable: false })
+  name: string;
+
   @ManyToOne(() => User, (user) => user.workouts)
   @JoinColumn({ name: "user_id" })
   user: User;

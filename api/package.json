@@ -14,7 +14,9 @@
     "gym",
     "fitness",
     "express",
-    "typescript"
+    "typescript",
+    "typeorm",
+    "clean-architecture"
   ],
   "author": "Wrub",
   "license": "ISC",

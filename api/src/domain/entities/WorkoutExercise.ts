@@ -8,11 +8,11 @@ export class WorkoutExercise {
   id: string;
 
   // Workout relations
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "uuid" })
   workout_id: string;
 
   @ManyToOne(() => Workout, (workout) => workout.exercises)
-  @JoinColumn({ name: "uuid" })
+  @JoinColumn({ name: "workout_id" })
   workout: Workout;
 
   // Exercise Relations
