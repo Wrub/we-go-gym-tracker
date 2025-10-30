@@ -7,7 +7,7 @@ import {
 } from "main/factories/exercise.factory";
 
 export default (router: Router) => {
-  router.get("/exercise", adaptRoute(makeListExercisesController()));
-  router.get("/exercise/:id", adaptRoute(makeFindExerciseController()));
-  router.post("/exercise", adaptRoute(makeCreateExerciseController()));
+  router.get("/exercises", adaptRoute(makeListExercisesController()));
+  router.get("/exercises/:id", adaptRoute(makeFindExerciseController()));
+  router.post("/exercises", adaptRoute(makeCreateExerciseController()));
 };

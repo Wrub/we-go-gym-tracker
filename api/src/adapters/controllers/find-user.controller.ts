@@ -16,7 +16,7 @@ export class FindUserController {
         return badRequest(new MissingParamError("id"));
       }
 
-      const id = httpRequest.params.id;
+      const { id } = httpRequest.params;
 
       const findUserResponse = await this.findUserUseCase.find(id);
 
