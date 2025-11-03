@@ -1,7 +1,9 @@
+import { ListWorkoutExercisesUseCase } from "@usecases/list-workout-exercises/list-workout-exercises.use-case";
 import { AddWorkoutExerciseController } from "@adapters/controllers/add-workout-exercise.controller";
 import { CreateWorkoutController } from "@adapters/controllers/create-workout.controller";
 import { DeleteWorkoutController } from "@adapters/controllers/delete-workout.controller";
 import { FindWorkoutController } from "@adapters/controllers/find-workout.controller";
+import { ListWorkoutExercisesController } from "@adapters/controllers/list-workout-exercises.controller";
 import { ListWorkoutsController } from "@adapters/controllers/list-workouts.controller";
 import { ormExerciseRepository } from "@repositories/exercise.repository";
 import { ormWorkoutRepository } from "@repositories/workout.repository";
@@ -37,6 +39,15 @@ export const makeDeleteWorkoutController = (): DeleteWorkoutController => {
   const deleteWorkoutUseCase = new DeleteWorkoutUseCase(workoutRepository);
   const deleteWorkoutController = new DeleteWorkoutController(deleteWorkoutUseCase);
   return deleteWorkoutController;
+};
+
+export const makeListWorkoutExercisesController = (): ListWorkoutExercisesController => {
+  const workoutRepository = ormWorkoutRepository;
+  const listWorkoutExercisesUseCase = new ListWorkoutExercisesUseCase(workoutRepository);
+  const listWorkoutExercisesController = new ListWorkoutExercisesController(
+    listWorkoutExercisesUseCase
+  );
+  return listWorkoutExercisesController;
 };
 
 export const makeAddWorkoutExerciseControler = (): AddWorkoutExerciseController => {

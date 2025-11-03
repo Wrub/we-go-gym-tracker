@@ -20,8 +20,6 @@ export class FindWorkoutController {
 
       const workout = await this.findWorkoutUseCase.find(id);
 
-      console.log(workout);
-
       if (!workout) {
         return notFoundError(`Workout with id: '${id}' was not found.`);
       }
