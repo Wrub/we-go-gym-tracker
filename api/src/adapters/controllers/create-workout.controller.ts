@@ -4,7 +4,7 @@ import { badRequest, conflict, created, serverError } from "./helpers/http-helpe
 import { MissingParamError } from "./errors";
 import { CreateWorkoutDTO } from "@usecases/create-workout/dto/create-workout.dto";
 import { AlreadyExistsError } from "./errors/already-exists-error";
-import { ExerciseDetailDto } from "@usecases/create-workout/dto/exercise-detail.dto";
+import { ExerciseDetailDto } from "app/dtos/exercise-detail.dto";
 
 export class CreateWorkoutController {
   private readonly createWorkoutUseCase: CreateWorkoutUseCase;

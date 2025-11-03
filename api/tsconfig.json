@@ -6,6 +6,7 @@
       "@repositories/*": ["app/repositories/*"],
       "@usecases/*": ["app/usecases/*"],
       "@adapters/*": ["adapters/*"],
+      "@dtos/*": ["app/dtos/*"]
     },
     "lib": ["ESNext"],
     "target": "ESNext",
