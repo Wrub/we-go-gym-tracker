@@ -3,6 +3,6 @@ import { adaptRoute } from "main/adapters/adapt-route";
 import { makeCreateUserController, makeFindUserController } from "main/factories/user.factory";
 
 export default (router: Router): void => {
-  router.get("/user/:id", adaptRoute(makeFindUserController()));
-  router.post("/user", adaptRoute(makeCreateUserController()));
+  router.get("/users/:id", adaptRoute(makeFindUserController()));
+  router.post("/users", adaptRoute(makeCreateUserController()));
 };

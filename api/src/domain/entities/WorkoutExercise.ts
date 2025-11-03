@@ -11,7 +11,9 @@ export class WorkoutExercise {
   @Column({ type: "uuid" })
   workout_id: string;
 
-  @ManyToOne(() => Workout, (workout) => workout.exercises)
+  @ManyToOne(() => Workout, (workout) => workout.exercises, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "workout_id" })
   workout: Workout;
 

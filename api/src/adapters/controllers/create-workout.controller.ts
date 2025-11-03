@@ -25,7 +25,7 @@ export class CreateWorkoutController {
       }
 
       const exerciseDetails: ExerciseDetailDto[] = body.exercises.map((ex: any) => ({
-        exercise_id: ex.id,
+        exercise_id: ex.exercise_id,
         sets: ex.sets,
         reps: ex.reps,
         weight: ex.weight,

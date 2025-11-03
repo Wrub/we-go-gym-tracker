@@ -13,12 +13,15 @@ export class Workout {
   @Column({ type: "varchar", length: 255, nullable: false })
   name: string;
 
-  @ManyToOne(() => User, (user) => user.workouts)
+  @ManyToOne(() => User, (user) => user.workouts, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "user_id" })
   user: User;
 
   @OneToMany(() => WorkoutExercise, (we) => we.workout, {
     cascade: true,
+    onDelete: "CASCADE",
   })
   exercises: WorkoutExercise[];
 }
