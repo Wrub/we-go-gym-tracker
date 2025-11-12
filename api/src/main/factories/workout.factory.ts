@@ -12,6 +12,8 @@ import { CreateWorkoutUseCase } from "@usecases/create-workout/create-workout.us
 import { DeleteWorkoutUseCase } from "@usecases/delete-workout/delete-workout.use-case";
 import { FindWorkoutUseCase } from "@usecases/find-workout/find-workout.use-case";
 import { ListWorkoutsUseCase } from "@usecases/list-workouts/list-workouts.use-case";
+import { UpdateWorkoutExerciseController } from "@adapters/controllers/update-workout-exercise.controller";
+import { UpdateWorkoutExerciseUseCase } from "@usecases/update-workout-exercise/update-workout-exercise.use-case";
 
 export const makeListWorkoutsController = (): ListWorkoutsController => {
   const workoutRepository = ormWorkoutRepository;
@@ -50,7 +52,7 @@ export const makeListWorkoutExercisesController = (): ListWorkoutExercisesContro
   return listWorkoutExercisesController;
 };
 
-export const makeAddWorkoutExerciseControler = (): AddWorkoutExerciseController => {
+export const makeAddWorkoutExerciseController = (): AddWorkoutExerciseController => {
   const workoutRepository = ormWorkoutRepository;
   const exerciseRepository = ormExerciseRepository;
   const addWorkoutExerciseUseCase = new AddWorkoutExerciseUseCase(
@@ -59,4 +61,13 @@ export const makeAddWorkoutExerciseControler = (): AddWorkoutExerciseController 
   );
   const addWorkoutExerciseController = new AddWorkoutExerciseController(addWorkoutExerciseUseCase);
   return addWorkoutExerciseController;
+};
+
+export const makeUpdateWorkoutExerciseController = (): UpdateWorkoutExerciseController => {
+  const workoutRepository = ormWorkoutRepository;
+  const updateWorkoutExerciseUseCase = new UpdateWorkoutExerciseUseCase(workoutRepository);
+  const updateWorkoutExerciseController = new UpdateWorkoutExerciseController(
+    updateWorkoutExerciseUseCase
+  );
+  return updateWorkoutExerciseController;
 };
