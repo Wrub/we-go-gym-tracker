@@ -1,5 +1,4 @@
-import type { Request, Response } from "express";
-import { badRequest, conflict, created, ok, serverError } from "./helpers/http-helpers";
+import { badRequest, conflict, created, serverError } from "./helpers/http-helpers";
 import { MissingParamError } from "./errors";
 import { HttpRequest, HttpResponse } from "./ports/http";
 import { CreateUserUseCase } from "@usecases/create-user/create-user.use-case";

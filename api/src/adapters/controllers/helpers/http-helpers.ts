@@ -11,10 +11,19 @@ export const conflict = (error: Error): HttpResponse => ({
   body: error.message,
 });
 
-export const ok = (data: any): HttpResponse => ({
-  statusCode: 200,
-  body: data,
-});
+export const ok = (data: any): HttpResponse => {
+  const cookieData = data.cookie;
+
+  if (cookieData) {
+    delete data.cookie;
+  }
+
+  return {
+    statusCode: 200,
+    body: data,
+    cookie: cookieData,
+  };
+};
 
 export const created = (data: any): HttpResponse => ({
   statusCode: 201,
@@ -29,6 +38,16 @@ export const okWithoutContent = () => ({
 export const serverError = (reason: string): HttpResponse => ({
   statusCode: 500,
   body: new ServerError(reason),
+});
+
+export const unauthorized = (): HttpResponse => ({
+  statusCode: 401,
+  body: "Unauthorized",
+});
+
+export const forbidden = (): HttpResponse => ({
+  statusCode: 403,
+  body: "Forbidden",
 });
 
 export const notFoundError = (message: string): HttpResponse => ({

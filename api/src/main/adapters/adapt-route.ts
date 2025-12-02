@@ -2,7 +2,7 @@ import { HttpRequest, HttpResponse } from "@adapters/controllers/ports/http";
 import { Request, Response } from "express";
 
 interface Controller {
-  handle(httpRequest: HttpRequest): Promise<HttpResponse>;
+  handle(httpRequest: HttpRequest, httpResponse?: HttpResponse): Promise<HttpResponse>;
 }
 
 export const adaptRoute = (controller: Controller) => {
@@ -12,6 +12,11 @@ export const adaptRoute = (controller: Controller) => {
       body: req.body,
     };
     const httpResponse = await controller.handle(httpRequest);
+
+    if (httpResponse.cookie) {
+      res.cookie(httpResponse.cookie.name, httpResponse.cookie.value, httpResponse.cookie.options);
+    }
+
     res.status(httpResponse.statusCode).json(httpResponse.body);
   };
 };

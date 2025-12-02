@@ -1,12 +1,6 @@
 import { DeleteWorkoutUseCase } from "@usecases/delete-workout/delete-workout.use-case";
 import { HttpRequest, HttpResponse } from "./ports/http";
-import {
-  badRequest,
-  notFoundError,
-  ok,
-  okWithoutContent,
-  serverError,
-} from "./helpers/http-helpers";
+import { badRequest, notFoundError, ok, serverError } from "./helpers/http-helpers";
 import { MissingParamError } from "./errors";
 
 export class DeleteWorkoutController {
